@@ -35,16 +35,26 @@ let addNote = (title,body) => {
     }
 }
 
-let getAll = () => {
-
+let removeNote = (title) => {
+    let notes = fetchNotes();    
+    let filteredNotes = notes.filter((note) => note.title !== title);
+    saveNotes(filteredNotes);
+    return notes.length !== filteredNotes.length;
 }
 
-let getNote = () => {
+let getAll = () => {
+    let notes = fetchNotes();    
+    return notes;
+}
 
+let getNote = (title) => {
+    let notes = fetchNotes();
+    let rs = notes.filter((title) => note.title === title);
+    return rs;
 }
 module.exports = {
     addNote,
     getAll,
-    getNote/*,
-    removeNote*/
+    getNote,
+    removeNote
 };

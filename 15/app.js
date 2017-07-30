@@ -21,12 +21,19 @@ switch(cmd){
         }
         break;
     case 'list':
-        notes.list();
+        let fetchedNotes = notes.getAll();
+        console.log("-------------------------");
+        console.log("Book list:");
+        fetchedNotes.forEach((note,index) => {
+            console.log(`${index} - ${note.title}`);
+        });
         break;    
     case 'read':
         notes.getNote(argv.noteTitle);
         break;
     case 'remove':
-        notes.removeNote(argv.noteTitle);
+        let rs = notes.removeNote(argv.noteTitle);
+        let msg = rs ? 'Note removed' : "Note not found";
+        console.log(msg);
         break;
 }
